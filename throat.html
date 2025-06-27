@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>인후통(목의 통증) 증상 선택</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .prevention {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var throatPain = document.getElementById("throatPain").checked;
+            var swelling = document.getElementById("swelling").checked;
+            var fever = document.getElementById("fever").checked;
+            var cough = document.getElementById("cough").checked;
+            var fatigue = document.getElementById("fatigue").checked;
+            var difficultySwallowing = document.getElementById("difficultySwallowing").checked;
+            var rash = document.getElementById("rash").checked;
+            var headache = document.getElementById("headache").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            // 증상 조합에 따른 진단 표시
+            if (throatPain && swelling && fever && cough && fatigue) {
+                diagnosisBox.innerText = "편도염: 편도에 염증이 생겨 목이 부어오르고 통증과 발열이 동반될 수 있습니다.";
+                preventionBox.innerText = "예방법: 면역력을 높이고, 감염 예방을 위해 손 씻기와 개인 위생을 철저히 하세요.";
+            } else if (throatPain && cough && fatigue) {
+                diagnosisBox.innerText = "감기: 상기도 감염으로 인후통, 기침, 피로감이 나타납니다.";
+                preventionBox.innerText = "예방법: 충분한 휴식과 수분 섭취를 통해 회복을 도와주세요.";
+            } else if (throatPain && fever && swelling) {
+                diagnosisBox.innerText = "인후염: 바이러스나 세균에 의한 목구멍의 염증으로, 목의 통증과 붓기가 나타납니다.";
+                preventionBox.innerText = "예방법: 자극적인 음식과 음료를 피하고, 수분을 충분히 섭취하세요.";
+            } else if (throatPain && cough) {
+                diagnosisBox.innerText = "후두염: 목의 염증으로 인후통과 음성 변화가 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 목을 보호하고, 찬 공기나 연기를 피하세요.";
+            } else if (throatPain && difficultySwallowing) {
+                diagnosisBox.innerText = "연하곤란: 인후통으로 인해 삼키기 어려움이 있을 수 있습니다.";
+                preventionBox.innerText = "예방법: 부드러운 음식을 섭취하고, 충분한 수분을 유지하세요.";
+            } else if (fever && rash) {
+                diagnosisBox.innerText = "홍역 또는 풍진: 발열과 함께 피부 발진이 나타나는 바이러스 감염일 수 있습니다.";
+                preventionBox.innerText = "예방법: 예방접종을 통해 감염을 예방하세요.";
+            } else if (throatPain && headache && fever) {
+                diagnosisBox.innerText = "부비동염: 목 통증과 두통, 발열이 동반될 수 있습니다.";
+                preventionBox.innerText = "예방법: 충분한 수분 섭취와 가습기를 사용해 호흡기를 촉촉하게 유지하세요.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단 불가, 추가 증상을 확인하세요.";
+                preventionBox.innerText = ""; // 진단 결과를 비워둡니다.
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>인후통(목의 통증) 증상 선택</h1>
+    <form>
+        <label><input type="checkbox" id="throatPain" onclick="updateDiagnosis()"> 인후통</label>
+        <label><input type="checkbox" id="swelling" onclick="updateDiagnosis()"> 목 부어오름</label>
+        <label><input type="checkbox" id="fever" onclick="updateDiagnosis()"> 발열</label>
+        <label><input type="checkbox" id="cough" onclick="updateDiagnosis()"> 기침</label>
+        <label><input type="checkbox" id="fatigue" onclick="updateDiagnosis()"> 피로감</label>
+        <label><input type="checkbox" id="difficultySwallowing" onclick="updateDiagnosis()"> 삼키기 어려움</label>
+        <label><input type="checkbox" id="rash" onclick="updateDiagnosis()"> 피부 발진</label>
+        <label><input type="checkbox" id="headache" onclick="updateDiagnosis()"> 두통</label>
+    </form>
+
+    <div class="diagnosis-result">
+        <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span>
+      <div id="prevention"></div>
+    </div>
+
+</body>
+</html>

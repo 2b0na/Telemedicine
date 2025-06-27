@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관절통 증상 선택</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        #prevention {
+            font-size: 1.1rem;
+            color: #333;
+            margin-top: 10px;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var jointPain = document.getElementById("jointPain").checked;
+            var jointSwelling = document.getElementById("jointSwelling").checked;
+            var jointStiffness = document.getElementById("jointStiffness").checked;
+            var fatigue = document.getElementById("fatigue").checked;
+            var fever = document.getElementById("fever").checked;
+            var weightLoss = document.getElementById("weightLoss").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            // 증상에 따른 진단 및 예방법
+            if (jointPain && jointSwelling && jointStiffness && fatigue) {
+                diagnosisBox.innerText = "류마티스 관절염";
+                preventionBox.innerText = "예방법: 규칙적인 운동과 관절 보호를 위한 적절한 휴식을 취하고, 항염증제 사용을 고려하세요. 증상이 심할 경우, 전문 의료진과 상담하세요.";
+            } else if (jointPain && fever && fatigue) {
+                diagnosisBox.innerText = "감염성 관절염: 관절 통증과 함께 발열과 피로가 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 감염을 예방하기 위해 손 위생을 철저히 하고, 적절한 항생제 치료가 필요할 수 있으니 의료진의 상담을 받으세요.";
+            } else if (jointPain && weightLoss && fatigue) {
+                diagnosisBox.innerText = "자가면역 질환: 체중 감소와 피로가 동반될 수 있습니다.";
+                preventionBox.innerText = "예방법: 면역체계를 강화하기 위해 균형 잡힌 식단을 유지하고, 정기적인 검진을 받아 질환의 진행 상황을 체크하세요.";
+            } else if (jointSwelling && jointStiffness) {
+                diagnosisBox.innerText = "골관절염: 관절 부기와 뻣뻣함이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 체중 조절과 적당한 운동으로 관절에 가해지는 부담을 줄이고, 통증 완화를 위해 물리치료나 약물 치료를 고려하세요.";
+            } else if (jointPain) {
+                diagnosisBox.innerText = "일반적인 관절 통증";
+                preventionBox.innerText = "예방법: 관절 보호를 위해 무리한 운동을 피하고, 관절에 무리가 가지 않는 스트레칭과 규칙적인 운동을 통해 통증을 완화할 수 있습니다.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단 불가, 추가 증상을 확인하세요.";
+                preventionBox.innerText = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>관절통 증상 선택</h1>
+    <form>
+        <label><input type="checkbox" id="jointPain" onclick="updateDiagnosis()"> 관절 통증</label>
+        <label><input type="checkbox" id="jointSwelling" onclick="updateDiagnosis()"> 관절 부기</label>
+        <label><input type="checkbox" id="jointStiffness" onclick="updateDiagnosis()"> 관절 뻣뻣함</label>
+        <label><input type="checkbox" id="fatigue" onclick="updateDiagnosis()"> 피로감</label>
+        <label><input type="checkbox" id="fever" onclick="updateDiagnosis()"> 발열</label>
+        <label><input type="checkbox" id="weightLoss" onclick="updateDiagnosis()"> 체중 감소</label>
+    </form>
+
+<div class="diagnosis-result">
+    <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span>
+    <div id="prevention"></div>
+</div>
+
+</body>
+</html>

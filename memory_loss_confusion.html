@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>건망증과 혼돈 증상 선택</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        #prevention {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var memoryLoss = document.getElementById("memoryLoss").checked;
+            var confusion = document.getElementById("confusion").checked;
+            var forgetfulness = document.getElementById("forgetfulness").checked;
+            var difficultyConcentrating = document.getElementById("difficultyConcentrating").checked;
+            var disorientation = document.getElementById("disorientation").checked;
+            var fatigue = document.getElementById("fatigue").checked;
+            var headache = document.getElementById("headache").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            // 진단 결과 초기화
+            diagnosisBox.innerText = "";  // 초기 상태에서는 결과 비움
+            preventionBox.innerText = "";  // 초기 상태에서는 예방조치 비움
+
+            // 증상 조합에 따른 진단
+            if (memoryLoss && confusion && disorientation) {
+                diagnosisBox.innerText = "치매 또는 신경계 이상일 가능성이 있습니다. 즉시 의료 진단이 필요합니다.";
+                preventionBox.innerText = "예방법: 정신적 활동 유지, 규칙적인 신체 운동.";
+            } else if (memoryLoss && confusion && headache) {
+                diagnosisBox.innerText = "뇌졸중 또는 뇌질환의 초기 증상일 수 있습니다.";
+                preventionBox.innerText = "예방법: 건강한 식습관 유지, 혈압 관리.";
+            } else if (forgetfulness && difficultyConcentrating && fatigue) {
+                diagnosisBox.innerText = "주의력 결핍 및 만성 피로의 가능성이 있습니다.";
+                preventionBox.innerText = "예방법: 충분한 수면, 규칙적인 운동.";
+            } else if (forgetfulness && fatigue && disorientation) {
+                diagnosisBox.innerText = "탈수나 전해질 불균형으로 인해 일시적인 혼동이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 수분 섭취 증가, 균형 잡힌 식사.";
+            } else if (confusion && headache && disorientation) {
+                diagnosisBox.innerText = "뇌진탕 또는 두부 외상의 가능성이 있습니다.";
+                preventionBox.innerText = "예방법: 안전한 환경 유지, 두부 외상 방지.";
+            } else if (forgetfulness && difficultyConcentrating) {
+                diagnosisBox.innerText = "주의력 결핍: 건망증과 집중력 저하가 함께 발생할 수 있습니다.";
+                preventionBox.innerText = "예방법: 짧은 휴식과 집중력 향상을 위한 운동.";
+            } else if (memoryLoss && confusion) {
+                diagnosisBox.innerText = "인지 장애: 건망증과 혼돈이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 두뇌 훈련 게임과 활동.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단 불가, 추가 증상을 확인하세요.";
+                preventionBox.innerText = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>건망증과 혼돈 증상 선택</h1>
+    <form>
+        <label><input type="checkbox" id="memoryLoss" onclick="updateDiagnosis()"> 건망증</label>
+        <label><input type="checkbox" id="confusion" onclick="updateDiagnosis()"> 혼돈</label>
+        <label><input type="checkbox" id="forgetfulness" onclick="updateDiagnosis()"> 잊어버림</label>
+        <label><input type="checkbox" id="difficultyConcentrating" onclick="updateDiagnosis()"> 집중력 저하</label>
+        <label><input type="checkbox" id="disorientation" onclick="updateDiagnosis()"> 방향 감각 상실</label>
+        <label><input type="checkbox" id="fatigue" onclick="updateDiagnosis()"> 피로감</label>
+        <label><input type="checkbox" id="headache" onclick="updateDiagnosis()"> 두통</label>
+    </form>
+
+    <div class="diagnosis-result">
+        <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span>
+        <div id="prevention"></div>
+    </div>
+
+</body>
+</html>

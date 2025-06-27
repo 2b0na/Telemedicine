@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>눈의 통증이나 자극</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        #prevention {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result, .prevention-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result, .prevention-result {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var eyeRedness = document.getElementById("eyeRedness").checked;
+            var itching = document.getElementById("itching").checked;
+            var eyeDischarge = document.getElementById("eyeDischarge").checked;
+            var foreignBody = document.getElementById("foreignBody").checked;
+            var blurryVision = document.getElementById("blurryVision").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            if (eyeRedness && itching && eyeDischarge && foreignBody) {
+                diagnosisBox.innerText = "결막염";
+                preventionBox.innerText = "예방법: 깨끗한 손으로 눈을 만지지 않도록 하고, 알레르기 유발 물질을 피하세요.";
+            } else if (eyeRedness && itching) {
+                diagnosisBox.innerText = "알레르기성 결막염: 눈의 충혈과 가려움증이 함께 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 눈에 자극을 주는 물질을 피하고, 인공눈물을 사용하세요.";
+            } else if (foreignBody && blurryVision) {
+                diagnosisBox.innerText = "각막 손상: 이물감과 함께 시야가 흐려질 수 있습니다.";
+                preventionBox.innerText = "예방법: 즉시 전문의의 진료를 받으세요.";
+            } else if (eyeDischarge && eyeRedness) {
+                diagnosisBox.innerText = "눈 감염: 눈곱과 충혈이 함께 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 청결한 손으로 눈을 씻고, 자극적인 환경을 피하세요.";
+            } else if (itching && blurryVision) {
+                diagnosisBox.innerText = "안구건조증: 가려움과 시야 흐림이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 자주 깜박이고 인공눈물을 사용하세요.";
+            } else if (eyeRedness) {
+                diagnosisBox.innerText = "충혈: 눈이 붉게 변할 수 있습니다.";
+                preventionBox.innerText = "예방법: 자극적인 요소를 피하고, 충분한 수분 섭취를 하세요.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단 불가, 추가 증상을 확인하세요.";
+                preventionBox.innerText = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>눈의 통증이나 자극 증상 선택</h1>
+    <form>
+        <label><input type="checkbox" id="eyeRedness" onclick="updateDiagnosis()"> 눈의 충혈</label>
+        <label><input type="checkbox" id="itching" onclick="updateDiagnosis()"> 가려움</label>
+        <label><input type="checkbox" id="eyeDischarge" onclick="updateDiagnosis()"> 눈곱</label>
+        <label><input type="checkbox" id="foreignBody" onclick="updateDiagnosis()"> 이물감</label>
+        <label><input type="checkbox" id="blurryVision" onclick="updateDiagnosis()"> 시야 흐림이나 눈부심</label>
+    </form>
+
+    <div class="diagnosis-result">
+        <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span>
+    <div id="prevention"></div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>피로감 증상 선택</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        #prevention {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var fatigue = document.getElementById("fatigue").checked;
+            var musclePain = document.getElementById("musclePain").checked;
+            var headache = document.getElementById("headache").checked;
+            var fever = document.getElementById("fever").checked;
+            var cough = document.getElementById("cough").checked;
+            var soreThroat = document.getElementById("soreThroat").checked;
+            var dizziness = document.getElementById("dizziness").checked;
+            var difficultyConcentrating = document.getElementById("difficultyConcentrating").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            // 증상 조합에 따른 진단 및 예방법 표시
+            if (fatigue && musclePain && headache && fever && cough) {
+                diagnosisBox.innerText = "독감: 발열, 기침, 근육통, 두통, 피로감 등이 동반되는 바이러스 감염입니다.";
+                preventionBox.innerText = "예방법: 충분한 수분 섭취와 휴식을 취하고, 필요 시 의사와 상담하세요.";
+            } else if (fatigue && headache && fever && soreThroat) {
+                diagnosisBox.innerText = "몸살감기: 피로감과 두통, 발열, 인후통이 동반되는 감기 증상입니다.";
+                preventionBox.innerText = "예방법: 충분한 수분 섭취와 휴식을 취하세요.";
+            } else if (fatigue && musclePain && dizziness) {
+                diagnosisBox.innerText = "만성 피로 증후군: 지속적인 피로감과 근육통, 어지러움 등이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 적절한 수면과 규칙적인 운동을 권장합니다.";
+            } else if (fatigue && cough && soreThroat) {
+                diagnosisBox.innerText = "상기도 감염: 피로감과 함께 기침, 인후통 등이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 손 씻기와 마스크 착용으로 전염병 예방에 힘쓰세요.";
+            } else if (fatigue && difficultyConcentrating) {
+                diagnosisBox.innerText = "스트레스: 피로감과 함께 집중력 저하가 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 적절한 휴식과 취미 생활을 통해 스트레스를 해소하세요.";
+            } else if (fatigue && fever && dizziness) {
+                diagnosisBox.innerText = "바이러스 감염: 피로감, 발열, 어지러움이 동반될 수 있습니다.";
+                preventionBox.innerText = "예방법: 병원에서 진료를 받고 충분한 휴식을 취하세요.";
+            } else if (fatigue && musclePain && headache) {
+                diagnosisBox.innerText = "피로성 근육통: 피로와 함께 두통 및 근육통이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 스트레칭과 규칙적인 운동을 권장합니다.";
+            } else if (fatigue && soreThroat && headache) {
+                diagnosisBox.innerText = "감기 초기 증상: 인후통, 두통, 피로감이 발생할 수 있습니다.";
+                preventionBox.innerText = "예방법: 충분한 수분 섭취와 적절한 휴식을 취하세요.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단 불가, 추가 증상을 확인하세요.";
+                preventionBox.innerText = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>피로감 증상 선택</h1>
+    <form>
+        <label><input type="checkbox" id="fatigue" onclick="updateDiagnosis()"> 피로감</label>
+        <label><input type="checkbox" id="musclePain" onclick="updateDiagnosis()"> 근육통</label>
+        <label><input type="checkbox" id="headache" onclick="updateDiagnosis()"> 두통</label>
+        <label><input type="checkbox" id="fever" onclick="updateDiagnosis()"> 발열</label>
+        <label><input type="checkbox" id="cough" onclick="updateDiagnosis()"> 기침</label>
+        <label><input type="checkbox" id="soreThroat" onclick="updateDiagnosis()"> 인후통</label>
+        <label><input type="checkbox" id="dizziness" onclick="updateDiagnosis()"> 어지러움</label>
+        <label><input type="checkbox" id="difficultyConcentrating" onclick="updateDiagnosis()"> 집중의 어려움</label>
+    </form>
+
+    <div class="diagnosis-result">
+        <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span>
+        <div id="prevention"></div>
+    </div>
+
+</body>
+</html>

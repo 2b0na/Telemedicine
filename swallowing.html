@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>삼킴 장애 증상 선택</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .prevention {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var difficultySwallowing = document.getElementById("difficultySwallowing").checked;
+            var choking = document.getElementById("choking").checked;
+            var painSwallowing = document.getElementById("painSwallowing").checked;
+            var regurgitation = document.getElementById("regurgitation").checked;
+            var chestPain = document.getElementById("chestPain").checked;
+            var weightLoss = document.getElementById("weightLoss").checked;
+            var hoarseness = document.getElementById("hoarseness").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            // 증상 조합에 따른 진단 결과
+            if (difficultySwallowing && choking && painSwallowing && chestPain && weightLoss) {
+                diagnosisBox.innerText = "식도암: 삼킴 장애, 흉통, 체중 감소가 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 정기적인 검진과 조기 진단이 중요합니다.";
+            } else if (difficultySwallowing && regurgitation && chestPain) {
+                diagnosisBox.innerText = "역류성 식도염: 역류, 흉통, 삼킴 장애가 나타납니다.";
+                preventionBox.innerText = "예방법: 식사 후에 바로 눕지 말고, 기름진 음식과 카페인을 피하세요.";
+            } else if (difficultySwallowing && painSwallowing && hoarseness) {
+                diagnosisBox.innerText = "인후염: 삼킴 시 통증, 목소리 변화가 나타납니다.";
+                preventionBox.innerText = "예방법: 수분을 충분히 섭취하고, 자극적인 음식은 피하세요.";
+            } else if (difficultySwallowing && choking && regurgitation) {
+                diagnosisBox.innerText = "식도 협착: 삼킴 장애와 음식물 역류, 질식감이 나타납니다.";
+                preventionBox.innerText = "예방법: 음식은 작게 썰어 씹어 먹고, 수분을 함께 섭취하세요.";
+            } else if (difficultySwallowing && weightLoss && hoarseness) {
+                diagnosisBox.innerText = "신경성 삼킴 장애: 체중 감소, 목소리 변화와 함께 삼킴 장애가 발생할 수 있습니다.";
+                preventionBox.innerText = "예방법: 전문의와 상담하여 치료 계획을 세우세요.";
+            } else if (difficultySwallowing && painSwallowing) {
+                diagnosisBox.innerText = "식도염: 삼킴 시 통증이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 알레르기 유발 음식을 피하고, 규칙적인 식사를 하세요.";
+            } else {
+                diagnosisBox.innerText = "증상을 선택하세요.";
+                preventionBox.innerText = ""; // 진단 결과를 비워둡니다.
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>삼킴 장애 증상 선택</h1>
+    <form>
+        <label><input type="checkbox" id="difficultySwallowing" onclick="updateDiagnosis()"> 삼킴 장애</label>
+        <label><input type="checkbox" id="choking" onclick="updateDiagnosis()"> 질식감</label>
+        <label><input type="checkbox" id="painSwallowing" onclick="updateDiagnosis()"> 삼킴 시 통증</label>
+        <label><input type="checkbox" id="regurgitation" onclick="updateDiagnosis()"> 음식물 역류</label>
+        <label><input type="checkbox" id="chestPain" onclick="updateDiagnosis()"> 흉통</label>
+        <label><input type="checkbox" id="weightLoss" onclick="updateDiagnosis()"> 체중 감소</label>
+        <label><input type="checkbox" id="hoarseness" onclick="updateDiagnosis()"> 목소리 변화(쉰 목소리)</label>
+    </form>
+
+    <div class="diagnosis-result">
+        <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span>
+       <div id="prevention"></div>
+    </div>
+
+</body>
+</html>

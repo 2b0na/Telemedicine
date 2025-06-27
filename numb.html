@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>감각이 없고 저린 증상 선택</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        #prevention {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var numbness = document.getElementById("numbness").checked;
+            var tingling = document.getElementById("tingling").checked;
+            var weakness = document.getElementById("weakness").checked;
+            var pain = document.getElementById("pain").checked;
+            var fatigue = document.getElementById("fatigue").checked;
+            var dizziness = document.getElementById("dizziness").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            // 진단 결과 초기화
+            diagnosisBox.innerText = "";  
+            preventionBox.innerText = ""; 
+
+            // 다양한 증상 조합에 따른 진단 및 예방법
+            if (numbness && tingling && weakness && pain) {
+                diagnosisBox.innerText = "말초신경병증";
+                preventionBox.innerText = "예방법: 건강한 식습관과 규칙적인 운동, 정기적인 건강 검진을 받으세요.";
+            } else if (numbness && weakness && fatigue) {
+                diagnosisBox.innerText = "비타민 결핍: 감각 저하, 근력 약화와 피로가 동반될 수 있습니다.";
+                preventionBox.innerText = "예방법: 비타민이 풍부한 음식을 섭취하고, 필요시 보충제를 고려하세요.";
+            } else if (tingling && dizziness) {
+                diagnosisBox.innerText = "빈혈: 따끔거림과 어지럼증이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 철분이 풍부한 음식을 섭취하고, 수분을 충분히 섭취하세요.";
+            } else if (numbness && pain) {
+                diagnosisBox.innerText = "신경 압박: 감각 저하와 통증이 함께 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 올바른 자세를 유지하고, 필요시 물리치료를 받으세요.";
+            } else if (tingling) {
+                diagnosisBox.innerText = "일반적인 따끔거림";
+                preventionBox.innerText = "예방법: 충분한 수분 섭취와 스트레칭을 통해 혈액순환을 촉진하세요.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단 불가, 추가 증상을 확인하세요.";
+                preventionBox.innerText = ""; // 예방법 초기화
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>감각이 없고 저린 증상 선택</h1>
+    <form>
+        <label><input type="checkbox" id="numbness" onclick="updateDiagnosis()"> 감각 저하</label>
+        <label><input type="checkbox" id="tingling" onclick="updateDiagnosis()"> 따끔거림</label>
+        <label><input type="checkbox" id="weakness" onclick="updateDiagnosis()"> 근육의 힘 약화</label>
+        <label><input type="checkbox" id="pain" onclick="updateDiagnosis()"> 통증</label>
+        <label><input type="checkbox" id="fatigue" onclick="updateDiagnosis()"> 피로감</label>
+        <label><input type="checkbox" id="dizziness" onclick="updateDiagnosis()"> 어지럼증</label>
+    </form>
+
+    <div class="diagnosis-result">
+        <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span><br>
+        <div id="prevention"></div>
+    </div>
+
+</body>
+</html>

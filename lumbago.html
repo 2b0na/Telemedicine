@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>요통 증상 선택</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        #prevention {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var backPain = document.getElementById("backPain").checked;
+            var legPain = document.getElementById("legPain").checked;
+            var numbness = document.getElementById("numbness").checked;
+            var stiffness = document.getElementById("stiffness").checked;
+            var fever = document.getElementById("fever").checked;
+            var weightLoss = document.getElementById("weightLoss").checked;
+            var weakness = document.getElementById("weakness").checked;
+            var incontinence = document.getElementById("incontinence").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            // 진단 결과 초기화
+            diagnosisBox.innerText = "";  // 초기 상태에서는 결과 비움
+            preventionBox.innerText = "";  // 초기 상태에서는 예방조치 비움
+
+            // 요통과 관련 증상 조합에 따른 진단
+            if (backPain && legPain && numbness && weakness && incontinence) {
+                diagnosisBox.innerText = "디스크 탈출증: 요통과 다리 통증, 감각 저하, 근력 약화, 배뇨 문제가 동반됩니다.";
+                preventionBox.innerText = "예방법: 무리한 활동 피하기, 바른 자세 유지, 규칙적인 스트레칭.";
+            } else if (backPain && stiffness && fever && weightLoss) {
+                diagnosisBox.innerText = "척추염: 요통과 척추의 강직, 발열, 체중 감소가 나타나는 척추염 증상입니다.";
+                preventionBox.innerText = "예방법: 적절한 운동, 스트레칭, 정기적인 건강 검진.";
+            } else if (backPain && numbness && weakness) {
+                diagnosisBox.innerText = "협착증: 요통과 다리의 저림 및 근력 약화가 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 올바른 자세로 앉기, 적절한 운동.";
+            } else if (backPain && stiffness) {
+                diagnosisBox.innerText = "근육 경직: 요통과 함께 허리 근육의 경직이 동반될 수 있습니다.";
+                preventionBox.innerText = "예방법: 규칙적인 스트레칭, 올바른 자세 유지.";
+            } else if (backPain && legPain) {
+                diagnosisBox.innerText = "좌골신경통: 요통과 함께 다리로 퍼지는 통증이 동반됩니다.";
+                preventionBox.innerText = "예방법: 휴식과 적절한 스트레칭.";
+            } else if (backPain && fever && incontinence) {
+                diagnosisBox.innerText = "척수 감염: 요통과 함께 발열, 배뇨 장애가 동반되는 심각한 감염일 수 있습니다.";
+                preventionBox.innerText = "예방법: 즉시 의료진에게 진료 받기.";
+            } else if (backPain && weightLoss) {
+                diagnosisBox.innerText = "척추 종양: 요통과 체중 감소가 함께 나타나는 경우, 종양이 의심될 수 있습니다.";
+                preventionBox.innerText = "예방법: 정기적인 검진과 의사 상담.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단 불가, 추가 증상을 확인하세요.";
+                preventionBox.innerText = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>요통 증상 선택</h1>
+    <form>
+        <label><input type="checkbox" id="backPain" onclick="updateDiagnosis()"> 요통</label>
+        <label><input type="checkbox" id="legPain" onclick="updateDiagnosis()"> 다리 통증</label>
+        <label><input type="checkbox" id="numbness" onclick="updateDiagnosis()"> 감각 저하/저림</label>
+        <label><input type="checkbox" id="stiffness" onclick="updateDiagnosis()"> 척추 강직</label>
+        <label><input type="checkbox" id="fever" onclick="updateDiagnosis()"> 발열</label>
+        <label><input type="checkbox" id="weightLoss" onclick="updateDiagnosis()"> 체중 감소</label>
+        <label><input type="checkbox" id="weakness" onclick="updateDiagnosis()"> 근력 약화</label>
+        <label><input type="checkbox" id="incontinence" onclick="updateDiagnosis()"> 배뇨 장애</label>
+    </form>
+
+    <div class="diagnosis-result">
+        <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span>
+        <div id="prevention"></div>
+    </div>
+</body>
+</html>

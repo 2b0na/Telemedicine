@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>우울증 증상 선택</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        #prevention {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result, .prevention-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result, .prevention-result {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var moodChange = document.getElementById("moodChange").checked;
+            var fatigue = document.getElementById("fatigue").checked;
+            var sleepIssues = document.getElementById("sleepIssues").checked;
+            var lossOfInterest = document.getElementById("lossOfInterest").checked;
+            var difficultyConcentrating = document.getElementById("difficultyConcentrating").checked;
+            var weightChange = document.getElementById("weightChange").checked;
+            var feelingsOfWorthlessness = document.getElementById("feelingsOfWorthlessness").checked;
+            var suicidalThoughts = document.getElementById("suicidalThoughts").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            // 증상 조합에 따른 진단
+            if (moodChange && fatigue && sleepIssues && lossOfInterest && suicidalThoughts) {
+                diagnosisBox.innerText = "심각한 우울증의 가능성이 있습니다. 즉시 전문가와 상담하세요.";
+                preventionBox.innerText = "예방법: 전문가의 도움을 받는 것이 중요합니다.";
+            } else if (moodChange && fatigue && sleepIssues && difficultyConcentrating && lossOfInterest) {
+                diagnosisBox.innerText = "우울증의 가능성이 있습니다.";
+                preventionBox.innerText = "예방법: 규칙적인 운동과 건강한 식습관을 유지하세요.";
+            } else if (lossOfInterest && difficultyConcentrating && weightChange) {
+                diagnosisBox.innerText = "무기력과 함께 우울 증상이 있을 수 있습니다.";
+                preventionBox.innerText = "예방법: 가벼운 운동과 취미 활동을 통해 에너지를 회복하세요.";
+            } else if (moodChange && feelingsOfWorthlessness && sleepIssues && suicidalThoughts) {
+                diagnosisBox.innerText = "심각한 정신 건강 문제 가능성이 있습니다. 즉각적인 상담이 필요합니다.";
+                preventionBox.innerText = "예방법: 정신 건강 전문가와의 상담을 권장합니다.";
+            } else if (fatigue && sleepIssues && lossOfInterest && weightChange) {
+                diagnosisBox.innerText = "신체적 및 정신적 피로감이 우울증과 관련될 수 있습니다.";
+                preventionBox.innerText = "예방법: 충분한 수면과 스트레스 관리가 필요합니다.";
+            } else if (moodChange && fatigue && difficultyConcentrating && feelingsOfWorthlessness) {
+                diagnosisBox.innerText = "경미한 우울 증상일 수 있습니다. 경과를 지켜보세요.";
+                preventionBox.innerText = "예방법: 일상적인 루틴을 유지하며 긍정적인 활동에 참여하세요.";
+            } else if (moodChange && sleepIssues && suicidalThoughts) {
+                diagnosisBox.innerText = "우울감과 자살 생각이 나타날 수 있습니다. 전문가의 도움이 필요합니다.";
+                preventionBox.innerText = "예방법: 즉시 전문가와 상담하세요.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단 불가, 추가 증상을 확인하세요.";
+                preventionBox.innerText = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>우울증 증상 선택</h1>
+    <form>
+        <label><input type="checkbox" id="moodChange" onclick="updateDiagnosis()"> 기분 변화</label>
+        <label><input type="checkbox" id="fatigue" onclick="updateDiagnosis()"> 피로감</label>
+        <label><input type="checkbox" id="sleepIssues" onclick="updateDiagnosis()"> 수면 문제</label>
+        <label><input type="checkbox" id="lossOfInterest" onclick="updateDiagnosis()"> 흥미 상실</label>
+        <label><input type="checkbox" id="difficultyConcentrating" onclick="updateDiagnosis()"> 집중의 어려움</label>
+        <label><input type="checkbox" id="weightChange" onclick="updateDiagnosis()"> 체중 변화</label>
+        <label><input type="checkbox" id="feelingsOfWorthlessness" onclick="updateDiagnosis()"> 무가치함 느낌</label>
+        <label><input type="checkbox" id="suicidalThoughts" onclick="updateDiagnosis()"> 자살 생각</label>
+    </form>
+
+    <div class="diagnosis-result">
+        <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span>
+    <div id="prevention"></div>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>항문과 직장 문제 증상 선택</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        #prevention {
+            font-size: 1.1rem;
+            color: #333;
+            margin-top: 10px;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result {
+                padding: 15px;
+            }
+        }
+    </style>
+
+    <script>
+        function updateDiagnosis() {
+            var pain = document.getElementById("pain").checked;
+            var bleeding = document.getElementById("bleeding").checked;
+            var itching = document.getElementById("itching").checked;
+            var swelling = document.getElementById("swelling").checked;
+            var discharge = document.getElementById("discharge").checked;
+            var constipation = document.getElementById("constipation").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            if (pain && bleeding && itching && swelling) {
+                diagnosisBox.innerText = "치질(치핵)";
+                preventionBox.innerText = "예방법: 규칙적인 배변 습관을 유지하고, 섬유질이 풍부한 식단을 섭취하세요. 오래 앉아 있지 말고 따뜻한 좌욕을 자주 해주는 것이 좋습니다.";
+            } else if (pain && discharge && swelling) {
+                diagnosisBox.innerText = "항문 농양";
+                preventionBox.innerText = "예방법: 항문 부위를 청결하게 유지하고, 좌욕을 통해 염증을 완화하세요. 증상이 심하면 즉시 병원을 방문하세요.";
+            } else if (bleeding && constipation) {
+                diagnosisBox.innerText = "치열";
+                preventionBox.innerText = "예방법: 변비를 예방하기 위해 충분한 수분 섭취와 섬유질이 풍부한 음식을 섭취하세요. 무리하게 변을 보지 않도록 주의하고, 증상이 심하면 전문의와 상담하세요.";
+            } else if (itching && swelling) {
+                diagnosisBox.innerText = "항문 소양증";
+                preventionBox.innerText = "예방법: 항문 주변을 청결하게 유지하고 자극적인 비누나 화학 제품을 피하세요. 통풍이 잘 되는 옷을 입고, 가려움을 유발하는 음식이나 음료를 피하는 것이 좋습니다.";
+            } else if (pain && swelling) {
+                diagnosisBox.innerText = "항문 종기";
+                preventionBox.innerText = "예방법: 항문 부위를 자주 씻고, 청결을 유지하세요. 좌욕을 통해 증상을 완화시키고, 증상이 지속되면 의료 전문가의 상담이 필요합니다.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단 불가, 추가 증상을 확인하세요.";
+                preventionBox.innerText = "";
+            }
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>자가진단 서비스</h1>
+</header>
+
+<h1>항문과 직장 문제 증상 선택</h1>
+
+<form>
+    <label><input type="checkbox" id="pain" onclick="updateDiagnosis()"> 통증</label>
+    <label><input type="checkbox" id="bleeding" onclick="updateDiagnosis()"> 출혈</label>
+    <label><input type="checkbox" id="itching" onclick="updateDiagnosis()"> 가려움</label>
+    <label><input type="checkbox" id="swelling" onclick="updateDiagnosis()"> 부풀어오름</label>
+    <label><input type="checkbox" id="discharge" onclick="updateDiagnosis()"> 분비물</label>
+    <label><input type="checkbox" id="constipation" onclick="updateDiagnosis()"> 변비</label>
+</form>
+
+<div class="diagnosis-result">
+    <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span>
+    <div id="prevention"></div>
+</div>
+
+</body>
+</html>

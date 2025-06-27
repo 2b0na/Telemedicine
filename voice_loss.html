@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>목쉼과 목소리 소실 증상 선택</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .prevention {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var voiceChange = document.getElementById("voiceChange").checked;
+            var throatPain = document.getElementById("throatPain").checked;
+            var cough = document.getElementById("cough").checked;
+            var voiceFatigue = document.getElementById("voiceFatigue").checked;
+            var irregularity = document.getElementById("irregularity").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            // 증상 조합에 따른 진단 결과
+            if (voiceChange && throatPain && cough && voiceFatigue) {
+                diagnosisBox.innerText = "후두염: 목소리 변화, 인후통, 기침, 목소리 피로감이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 수분을 충분히 섭취하고, 목소리를 너무 많이 사용하지 마세요.";
+            } else if (voiceChange && throatPain && irregularity) {
+                diagnosisBox.innerText = "성대 결절: 목소리 변화와 불규칙성이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 발음 훈련과 목소리 휴식을 취하세요.";
+            } else if (voiceFatigue && throatPain) {
+                diagnosisBox.innerText = "성대 피로: 목소리 피로감과 인후통이 동반될 수 있습니다.";
+                preventionBox.innerText = "예방법: 목소리를 자주 쉬고, 따뜻한 물로 가글하세요.";
+            } else if (cough && throatPain) {
+                diagnosisBox.innerText = "후두 감염: 기침과 인후통이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 충분한 수분 섭취와 면역력 강화를 위해 건강한 식단을 유지하세요.";
+            } else if (voiceChange && voiceFatigue) {
+                diagnosisBox.innerText = "성대 기능 저하: 목소리 변화와 피로감이 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 목소리를 많이 사용하지 않도록 주의하세요.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단 불가, 추가 증상을 확인하세요.";
+                preventionBox.innerText = ""; // 예방 결과를 비워둡니다.
+            }
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>자가진단 서비스</h1>
+</header>
+
+<h1>목쉼과 목소리 소실 증상 선택</h1>
+
+<form>
+    <label><input type="checkbox" id="voiceChange" onclick="updateDiagnosis()"> 목소리 변화</label>
+    <label><input type="checkbox" id="voiceFatigue" onclick="updateDiagnosis()"> 목소리 피로감</label>
+    <label><input type="checkbox" id="irregularity" onclick="updateDiagnosis()"> 목소리 불규칙성</label>
+    <label><input type="checkbox" id="throatPain" onclick="updateDiagnosis()"> 인후통</label>
+    <label><input type="checkbox" id="cough" onclick="updateDiagnosis()"> 기침</label>
+</form>
+
+<div class="diagnosis-result">
+    <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span>
+      <div id="prevention"></div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>빈뇨 자가 진단</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        #prevention {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var frequentUrination = document.getElementById("frequentUrination").checked;
+            var urgency = document.getElementById("urgency").checked;
+            var nocturia = document.getElementById("nocturia").checked;
+            var incontinence = document.getElementById("incontinence").checked;
+            var painUrination = document.getElementById("painUrination").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            // 진단 결과 및 예방법 초기화
+            diagnosisBox.innerText = "";  
+            preventionBox.innerText = ""; 
+
+            // 다양한 증상 조합에 따른 진단 및 예방법
+            if (frequentUrination && urgency && nocturia && painUrination) {
+                diagnosisBox.innerText = "과민성 방광";
+                preventionBox.innerText = "예방법: 방광 훈련을 시도하고, 카페인 및 알코올 섭취를 줄이세요.";
+            } else if (frequentUrination && nocturia && incontinence) {
+                diagnosisBox.innerText = "빈뇨";
+                preventionBox.innerText = "예방법: 수분 섭취를 조절하고, 규칙적인 배뇨 습관을 유지하세요.";
+            } else if (painUrination && urgency && frequentUrination) {
+                diagnosisBox.innerText = "방광염";
+                preventionBox.innerText = "예방법: 자주 손을 씻고, 위생적으로 관리하세요.";
+            } else if (nocturia && urgency && incontinence) {
+                diagnosisBox.innerText = "전립선 비대증";
+                preventionBox.innerText = "예방법: 규칙적인 운동과 건강한 식습관을 유지하세요.";
+            } else if (painUrination && frequentUrination && incontinence) {
+                diagnosisBox.innerText = "요로 감염";
+                preventionBox.innerText = "예방법: 충분한 수분 섭취와 배뇨 후 속옷을 잘 관리하세요.";
+            } else if (nocturia && incontinence) {
+                diagnosisBox.innerText = "요실금";
+                preventionBox.innerText = "예방법: 골반 근육 운동을 통해 강화하세요.";
+            } else if (urgency && frequentUrination) {
+                diagnosisBox.innerText = "요절박";
+                preventionBox.innerText = "예방법: 방광을 규칙적으로 비우고 긴장을 피하세요.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단을 내릴 수 없습니다. 증상이 경미하거나 추가 증상이 필요할 수 있습니다.";
+                preventionBox.innerText = ""; // 예방법 초기화
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>빈뇨 자가 진단</h1>
+    <form>
+        <label><input type="checkbox" id="frequentUrination" onclick="updateDiagnosis()"> 잦은 배뇨</label>
+        <label><input type="checkbox" id="urgency" onclick="updateDiagnosis()"> 급하게 소변을 보고 싶음</label>
+        <label><input type="checkbox" id="nocturia" onclick="updateDiagnosis()"> 밤에 소변이 마려움</label>
+        <label><input type="checkbox" id="incontinence" onclick="updateDiagnosis()"> 소변이 새어 나옴</label>
+        <label><input type="checkbox" id="painUrination" onclick="updateDiagnosis()"> 배뇨 시 통증</label>
+    </form>
+    
+    <div class="diagnosis-result">
+        <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span><br>
+        <div id="prevention"></div>
+    </div>
+</body>
+</html>

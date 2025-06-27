@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>가슴 두근거림 증상 선택</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+         .prevention {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #333;
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result, .prevention {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var palpitations = document.getElementById("palpitations").checked;
+            var chestPain = document.getElementById("chestPain").checked;
+            var shortnessOfBreath = document.getElementById("shortnessOfBreath").checked;
+            var dizziness = document.getElementById("dizziness").checked;
+            var sweating = document.getElementById("sweating").checked;
+            var nausea = document.getElementById("nausea").checked;
+            var fatigue = document.getElementById("fatigue").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            // 증상 조합에 따른 진단 및 예방법 표시
+            if (palpitations && chestPain && shortnessOfBreath && dizziness) {
+                diagnosisBox.innerText = "심장 문제(심근경색 또는 협심증)의 가능성이 있습니다. 즉시 의료 진단이 필요합니다.";
+                preventionBox.innerText = "예방법: 정기적인 건강 검진, 적절한 식습관 유지, 스트레스 관리.";
+            } else if (palpitations && sweating && nausea) {
+                diagnosisBox.innerText = "공황 발작 또는 심한 스트레스의 가능성이 있습니다.";
+                preventionBox.innerText = "예방법: 심호흡 연습, 이완 기법, 정기적인 운동.";
+            } else if (palpitations && fatigue && dizziness) {
+                diagnosisBox.innerText = "저혈압이나 빈혈의 징후일 수 있습니다.";
+                preventionBox.innerText = "예방법: 충분한 수분 섭취, 영양가 있는 음식 섭취.";
+            } else if (palpitations && chestPain && sweating) {
+                diagnosisBox.innerText = "심혈관 질환의 가능성이 있습니다. 의료 진단을 받는 것이 좋습니다.";
+                preventionBox.innerText = "예방법: 규칙적인 운동, 건강한 식사 습관.";
+            } else if (palpitations && dizziness) {
+                diagnosisBox.innerText = "스트레스 또는 불안의 징후일 수 있습니다.";
+                preventionBox.innerText = "예방법: 스트레스 관리 기법 연습, 충분한 휴식.";
+            } else if (palpitations && shortnessOfBreath) {
+                diagnosisBox.innerText = "심장 질환 또는 불안장애의 가능성이 있습니다.";
+                preventionBox.innerText = "예방법: 규칙적인 운동, 심리 상담.";
+            } else if (palpitations && chestPain) {
+                diagnosisBox.innerText = "부정맥 또는 심장과 관련된 문제일 수 있습니다.";
+                preventionBox.innerText = "예방법: 건강한 식습관 유지, 규칙적인 운동.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단 불가, 추가 증상을 확인하세요.";
+                preventionBox.innerText = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>가슴 두근거림 증상 선택</h1>
+    <form>
+        <label><input type="checkbox" id="palpitations" onclick="updateDiagnosis()"> 가슴 두근거림</label>
+        <label><input type="checkbox" id="chestPain" onclick="updateDiagnosis()"> 가슴 통증</label>
+        <label><input type="checkbox" id="shortnessOfBreath" onclick="updateDiagnosis()"> 호흡 곤란</label>
+        <label><input type="checkbox" id="dizziness" onclick="updateDiagnosis()"> 어지러움</label>
+        <label><input type="checkbox" id="sweating" onclick="updateDiagnosis()"> 발한</label>
+        <label><input type="checkbox" id="nausea" onclick="updateDiagnosis()"> 메스꺼움</label>
+        <label><input type="checkbox" id="fatigue" onclick="updateDiagnosis()"> 피로감</label>
+    </form>
+
+    <div class="diagnosis-result">
+        <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span>
+        <div id="prevention"></div>
+    </div>
+
+</body>
+</html>

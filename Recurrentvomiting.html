@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>재발성 구토 증상 선택</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0044cc;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #diagnosis {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0044cc;
+        }
+        #prevention {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        div {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagnosis-result {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f0ff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            form, .diagnosis-result {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        function updateDiagnosis() {
+            var vomiting = document.getElementById("vomiting").checked;
+            var nausea = document.getElementById("nausea").checked;
+            var abdominalPain = document.getElementById("abdominalPain").checked;
+            var diarrhea = document.getElementById("diarrhea").checked;
+            var fever = document.getElementById("fever").checked;
+            var headache = document.getElementById("headache").checked;
+            var dizziness = document.getElementById("dizziness").checked;
+            var dehydration = document.getElementById("dehydration").checked;
+            var weightLoss = document.getElementById("weightLoss").checked;
+            var diagnosisBox = document.getElementById("diagnosis");
+            var preventionBox = document.getElementById("prevention");
+
+            // 진단 결과 및 예방법 초기화
+            diagnosisBox.innerText = "";  
+            preventionBox.innerText = ""; 
+
+            // 구토와 관련된 다양한 증상 조합에 따른 진단 및 예방법
+            if (vomiting && nausea && abdominalPain && diarrhea && fever) {
+                diagnosisBox.innerText = "장염: 구토, 복통, 설사, 발열 등이 동반되는 장염 증상입니다.";
+                preventionBox.innerText = "예방법: 손 씻기, 안전한 식품 섭취, 식사 후 위생 관리.";
+            } else if (vomiting && dizziness && headache && dehydration) {
+                diagnosisBox.innerText = "탈수: 구토와 함께 어지럼증, 두통, 탈수가 나타날 수 있습니다.";
+                preventionBox.innerText = "예방법: 충분한 수분 섭취, 전해질 보충 음료 섭취.";
+            } else if (vomiting && abdominalPain && weightLoss) {
+                diagnosisBox.innerText = "위궤양: 구토와 복통, 체중 감소가 나타나는 위장 질환입니다.";
+                preventionBox.innerText = "예방법: 자극적인 음식 피하기, 정기적인 식사.";
+            } else if (vomiting && nausea && dizziness) {
+                diagnosisBox.innerText = "임신 초기: 구토, 메스꺼움, 어지럼증은 임신 초기의 흔한 증상입니다.";
+                preventionBox.innerText = "예방법: 소량씩 자주 식사하기, 수분 섭취.";
+            } else if (vomiting && headache && fever) {
+                diagnosisBox.innerText = "뇌수막염: 구토와 함께 두통, 발열이 나타나는 뇌의 염증 질환일 수 있습니다.";
+                preventionBox.innerText = "예방법: 즉시 의사와 상담하여 정확한 진단 및 치료.";
+            } else if (vomiting && nausea && diarrhea) {
+                diagnosisBox.innerText = "식중독: 구토, 메스꺼움, 설사가 동반될 수 있는 식중독 증상입니다.";
+                preventionBox.innerText = "예방법: 안전한 음식 조리 및 보관, 외식 시 주의.";
+            } else if (vomiting && abdominalPain && dizziness) {
+                diagnosisBox.innerText = "장폐색: 복통과 어지럼증이 함께 나타나면서 구토가 동반될 수 있습니다.";
+                preventionBox.innerText = "예방법: 복통 시 즉시 의사와 상담.";
+            } else if (vomiting && dehydration) {
+                diagnosisBox.innerText = "탈수: 구토와 탈수가 동반되는 경우, 수분 보충이 필요합니다.";
+                preventionBox.innerText = "예방법: 지속적인 수분 섭취, 전해질 보충.";
+            } else {
+                diagnosisBox.innerText = "명확한 진단 불가, 추가 증상을 확인하세요.";
+                preventionBox.innerText = ""; // 예방법 초기화
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>구토 증상 선택</h1>
+    <form>
+        <label><input type="checkbox" id="vomiting" onclick="updateDiagnosis()"> 구토</label>
+        <label><input type="checkbox" id="nausea" onclick="updateDiagnosis()"> 메스꺼움</label>
+        <label><input type="checkbox" id="abdominalPain" onclick="updateDiagnosis()"> 복통</label>
+        <label><input type="checkbox" id="diarrhea" onclick="updateDiagnosis()"> 설사</label>
+        <label><input type="checkbox" id="fever" onclick="updateDiagnosis()"> 발열</label>
+        <label><input type="checkbox" id="headache" onclick="updateDiagnosis()"> 두통</label>
+        <label><input type="checkbox" id="dizziness" onclick="updateDiagnosis()"> 어지럼증</label>
+        <label><input type="checkbox" id="dehydration" onclick="updateDiagnosis()"> 탈수</label>
+        <label><input type="checkbox" id="weightLoss" onclick="updateDiagnosis()"> 체중 감소</label>
+    </form>
+
+    <div class="diagnosis-result">
+        <strong>진단 결과:</strong> <span id="diagnosis">증상을 선택하세요.</span><br>
+        <div id="prevention"></div>
+    </div>
+
+</body>
+</html>
